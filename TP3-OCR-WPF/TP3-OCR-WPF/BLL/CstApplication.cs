@@ -1,5 +1,5 @@
 ﻿
-namespace TP3_OCR_WPF
+namespace TP3_OCR_WPF.BLL
 {
     /// <summary>
     /// Classe de constantes de l'application.

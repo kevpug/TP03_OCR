@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TP3_OCR_WPF.BLL;
 
-namespace TP3_OCR_WPF
+namespace TP3_OCR_WPF.GUI
 {
     /// <summary>
     /// Permet d'afficher l'interface pour la reconnaissance de caractères. 

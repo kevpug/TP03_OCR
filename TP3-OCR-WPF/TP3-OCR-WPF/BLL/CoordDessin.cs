@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace TP3_OCR_WPF
+namespace TP3_OCR_WPF.BLL
 {
     /// <summary>
     /// Gère la structure de données qui contient le caractères et les coordonnées des points du dessin de ce caractère

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace TP3_OCR_WPF
+namespace TP3_OCR_WPF.BLL
 {
     /// <summary>
     /// Classe du perceptron. Permet de faire l'apprentissage automatique sur un échantillon d'apprentissage. 

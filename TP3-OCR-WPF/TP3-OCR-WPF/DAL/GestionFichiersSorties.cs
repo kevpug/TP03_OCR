@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using TP3_OCR_WPF.BLL;
 
-namespace TP3_OCR_WPF
+namespace TP3_OCR_WPF.DAL
 {
     /// <summary>
     /// Cette classe gère l'accès aux disques pour le fichiers d'apprentissages. 

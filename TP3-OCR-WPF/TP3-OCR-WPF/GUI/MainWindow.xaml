@@ -1,9 +1,9 @@
-﻿<Window x:Name="frmAnalyseEcriture" x:Class="TP3_OCR_WPF.MainWindow"
+﻿<Window x:Name="frmAnalyseEcriture" x:Class="TP3_OCR_WPF.GUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TP3_OCR_WPF"
+        xmlns:local="clr-namespace:TP3_OCR_WPF.GUI"
         mc:Ignorable="d"
         Title="Analyse écriture" Height="648.35" Width="457.6">
     <Grid Margin="0,0,0,0">

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using TP3_OCR_WPF.DAL;
 
-namespace TP3_OCR_WPF
+namespace TP3_OCR_WPF.BLL
 {
     /// <summary>
     /// Gère les fonctionnalités de l'application. Entre autre, permet de :

@@ -56,15 +56,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CoordDessin.cs" />
-    <Compile Include="CstApplication.cs" />
-    <Compile Include="GestionClassesPerceptrons.cs" />
-    <Compile Include="GestionFichiersSorties.cs" />
-    <Compile Include="Perceptron.cs" />
-    <Compile Include="ucZoneDessin.xaml.cs">
+    <Compile Include="BLL\CoordDessin.cs" />
+    <Compile Include="BLL\CstApplication.cs" />
+    <Compile Include="BLL\GestionClassesPerceptrons.cs" />
+    <Compile Include="DAL\GestionFichiersSorties.cs" />
+    <Compile Include="BLL\Perceptron.cs" />
+    <Compile Include="GUI\ucZoneDessin.xaml.cs">
       <DependentUpon>ucZoneDessin.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="GUI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -72,11 +72,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="GUI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ucZoneDessin.xaml">
+    <Page Include="GUI\ucZoneDessin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,5 +107,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
