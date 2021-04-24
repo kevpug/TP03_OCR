@@ -68,11 +68,15 @@ namespace TP3_OCR_WPF.DAL
 
                 foreach (var coord in item.BitArrayDessin)
                 {
-                    if (coord.ToString() == "false")
+                    if (coord.ToString() == "False")
                     {
-
+                        strm.Write("-1 ");
                     }
-                    strm.Write(coord.ToString() + " ");
+                    else
+                    {
+                        strm.Write("1 ");
+                    }
+                    //strm.Write(coord.ToString() + " ");
                 }
                 strm.WriteLine();
             }
