@@ -20,6 +20,29 @@ namespace TP3_OCR_WPF.DAL
         {
             _lstCoord = new List<CoordDessin>();
 
+            StreamReader lecteur = new StreamReader(fichier);
+            string sLigne = "";
+            string[] sTabElements = null;
+            //BD = new BDApprentissageAuto();
+            //if (!lecteur.EndOfStream)
+            //{
+            //    sLigne = lecteur.ReadLine();
+            //    BD.NBElements = Convert.ToInt32(sLigne);
+            //    sLigne = lecteur.ReadLine();
+            //    BD.NBAttributs = Convert.ToInt32(sLigne);
+            //    BD.Elements = new double[BD.NBElements, BD.NBAttributs - 1];
+            //    BD.Resultats = new int[BD.NBElements];
+            //    for (int i = 0; i < BD.NBElements; i++)
+            //    {
+            //        sLigne = lecteur.ReadLine();
+            //        sTabElements = sLigne.Split('\t');
+            //        for (int j = 0; j < sTabElements.Length - 1; j++)
+            //            BD.Elements[i, j] = Convert.ToDouble(sTabElements[j]);
+            //        BD.Resultats[i] = Convert.ToInt32(sTabElements[sTabElements.Length - 1]);
+            //    }
+            //}
+
+
             //À COMPLÉTER
             return _lstCoord;
         }
@@ -39,6 +62,7 @@ namespace TP3_OCR_WPF.DAL
         /// </summary>
         public IList<CoordDessin> ObtenirCoordonnees()
         {
+
 
             return _lstCoord;
         }

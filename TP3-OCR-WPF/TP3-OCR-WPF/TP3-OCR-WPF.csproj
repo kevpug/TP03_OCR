@@ -59,8 +59,11 @@
     <Compile Include="BLL\CoordDessin.cs" />
     <Compile Include="BLL\CstApplication.cs" />
     <Compile Include="BLL\GestionClassesPerceptrons.cs" />
+    <Compile Include="BLL\GestionMainWindow.cs" />
+    <Compile Include="BLL\IGestionMainWindow.cs" />
     <Compile Include="DAL\GestionFichiersSorties.cs" />
     <Compile Include="BLL\Perceptron.cs" />
+    <Compile Include="DAL\IGestionFichiers.cs" />
     <Compile Include="GUI\ucZoneDessin.xaml.cs">
       <DependentUpon>ucZoneDessin.xaml</DependentUpon>
     </Compile>
