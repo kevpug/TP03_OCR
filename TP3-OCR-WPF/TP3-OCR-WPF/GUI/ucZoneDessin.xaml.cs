@@ -35,6 +35,14 @@ namespace TP3_OCR_WPF.GUI
             _coordonnees = new CoordDessin(CstApplication.TAILLEDESSINX, CstApplication.TAILLEDESSINY);
         }
 
+        public CoordDessin Coordonnees
+        {
+            get
+            {
+                return _coordonnees;
+            }
+        }
+
         /// <summary>
         /// Ré-initialise le dessin et les composants.
         /// </summary>

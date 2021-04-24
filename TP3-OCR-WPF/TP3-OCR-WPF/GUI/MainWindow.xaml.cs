@@ -51,7 +51,8 @@ namespace TP3_OCR_WPF.GUI
         /// <param name="e">Les arguments de cet événement.</param>
         private void btnEntrainement_Click(object sender, RoutedEventArgs e)
         {
-            //À COMPLÉTER
+            
+            _gcpAnalyseEcriture.SauvegarderCoordonnees("Donnees.txt");
         }
 
         /// <summary>

@@ -53,7 +53,20 @@ namespace TP3_OCR_WPF.DAL
         /// <param name="fichier">Fichier où extraire les données</param>
         public int SauvegarderCoordonnees(string fichier, List<CoordDessin> lstCoord)
         {
-            //À COMPLÉTER
+            StreamWriter strm = new StreamWriter(@"..\DAL\" + fichier);
+            
+
+            foreach (var item in lstCoord)
+            {
+                strm.Write(item.Reponse + ":");
+
+                foreach (var coord in item.BitArrayDessin)
+                {
+                    strm.Write(coord.ToString() + " ");
+                }
+                strm.WriteLine();
+            }
+            strm.Flush();
             return CstApplication.OK;
         }
 
@@ -62,8 +75,6 @@ namespace TP3_OCR_WPF.DAL
         /// </summary>
         public IList<CoordDessin> ObtenirCoordonnees()
         {
-
-
             return _lstCoord;
         }
 

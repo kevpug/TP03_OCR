@@ -44,7 +44,7 @@ namespace TP3_OCR_WPF.BLL
         public int SauvegarderCoordonnees(string fichier)
         {
             int erreur = CstApplication.ERREUR;
-            //À COMPLÉTER
+            //_gestionSortie.SauvegarderCoordonnees(fichier,);
             return erreur;
         }
 
