@@ -24,6 +24,7 @@ namespace TP3_OCR_WPF.GUI
     {
         // Le gestionnaire des perceptrons.
         private GestionClassesPerceptrons _gcpAnalyseEcriture;
+        private string fichier = "DAL\\Donnees.txt";
         public MainWindow()
         {
             InitializeComponent();
@@ -51,8 +52,8 @@ namespace TP3_OCR_WPF.GUI
         /// <param name="e">Les arguments de cet événement.</param>
         private void btnEntrainement_Click(object sender, RoutedEventArgs e)
         {
-            
-            _gcpAnalyseEcriture.SauvegarderCoordonnees("Donnees.txt");
+            _gcpAnalyseEcriture.Entrainement(ucDessin.Coordonnees, txtValeurEntrainee.Text);
+            _gcpAnalyseEcriture.SauvegarderCoordonnees(fichier);
         }
 
         /// <summary>

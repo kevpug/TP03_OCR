@@ -22,7 +22,7 @@ namespace TP3_OCR_WPF.DAL
 
             StreamReader lecteur = new StreamReader(fichier);
             string sLigne = "";
-            string[] sTabElements = null;
+            //string[] sTabElements = null;
             //BD = new BDApprentissageAuto();
             //if (!lecteur.EndOfStream)
             //{
@@ -41,19 +41,25 @@ namespace TP3_OCR_WPF.DAL
             //        BD.Resultats[i] = Convert.ToInt32(sTabElements[sTabElements.Length - 1]);
             //    }
             //}
+            if (!lecteur.EndOfStream)
+            {
+                
+            }
 
 
-            //À COMPLÉTER
+
             return _lstCoord;
         }
 
         /// <summary>
-        /// Permet de sauvegarder dans fichier texte dans une matrice pour l'apprentissage automatique
+        /// Permet de sauvegarder dans fichier texte, une matrice pour l'apprentissage automatique
         /// </summary>
         /// <param name="fichier">Fichier où extraire les données</param>
         public int SauvegarderCoordonnees(string fichier, List<CoordDessin> lstCoord)
         {
-            StreamWriter strm = new StreamWriter(@"..\DAL\" + fichier);
+            File.WriteAllText(fichier, String.Empty);
+
+            StreamWriter strm = new StreamWriter(fichier);
             
 
             foreach (var item in lstCoord)
@@ -62,6 +68,10 @@ namespace TP3_OCR_WPF.DAL
 
                 foreach (var coord in item.BitArrayDessin)
                 {
+                    if (coord.ToString() == "false")
+                    {
+
+                    }
                     strm.Write(coord.ToString() + " ");
                 }
                 strm.WriteLine();

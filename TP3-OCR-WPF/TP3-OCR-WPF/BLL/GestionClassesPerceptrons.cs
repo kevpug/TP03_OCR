@@ -13,6 +13,7 @@ namespace TP3_OCR_WPF.BLL
     public class GestionClassesPerceptrons
     {
         private Dictionary<string, Perceptron> _lstPerceptrons;
+        private List<CoordDessin> _lstCoordDessin;
         private GestionFichiersSorties _gestionSortie;
 
         /// <summary>
@@ -22,9 +23,9 @@ namespace TP3_OCR_WPF.BLL
         {
             _lstPerceptrons = new Dictionary<string, Perceptron>();
             _gestionSortie = new GestionFichiersSorties();
-
+            _lstCoordDessin = new List<CoordDessin>();
             //À COMPLÉTER
-            
+
         }
 
         /// <summary>
@@ -33,7 +34,7 @@ namespace TP3_OCR_WPF.BLL
         /// <param name="fichier">Le nom du fichier</param>
         public void ChargerCoordonnees(string fichier)
         {
-            //À COMPLÉTER
+            _lstCoordDessin = _gestionSortie.ChargerCoordonnees(fichier);
         }
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace TP3_OCR_WPF.BLL
         public int SauvegarderCoordonnees(string fichier)
         {
             int erreur = CstApplication.ERREUR;
-            //_gestionSortie.SauvegarderCoordonnees(fichier,);
+            _gestionSortie.SauvegarderCoordonnees(fichier,_lstCoordDessin);
             return erreur;
         }
 
@@ -57,6 +58,8 @@ namespace TP3_OCR_WPF.BLL
         public string Entrainement(CoordDessin coordo, string reponse)
         {
             string sConsole = "";
+            coordo.Reponse = reponse;
+            _lstCoordDessin.Add(coordo);
 
             return sConsole;
         }
