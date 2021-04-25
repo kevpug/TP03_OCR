@@ -53,6 +53,7 @@ namespace TP3_OCR_WPF.BLL
         {
             int erreur = CstApplication.ERREUR;
             _gestionSortie.SauvegarderCoordonnees(fichier, coordo);
+            
             return erreur;
         }
 
@@ -67,10 +68,15 @@ namespace TP3_OCR_WPF.BLL
             string sConsole = "";
             coordo.Reponse = reponse;
             _lstCoordDessin.Add(coordo);
+            if (!_lstPerceptrons.ContainsKey(reponse))
+            {
+                _lstPerceptrons.Add(reponse, new Perceptron(reponse));
+            }
             if (_lstPerceptrons.ContainsKey(reponse))
             {
                 sConsole = _lstPerceptrons[reponse].Entrainement(_lstCoordDessin);
             }
+
 
             return sConsole;
         }
