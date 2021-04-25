@@ -38,7 +38,7 @@ namespace TP3_OCR_WPF.DAL
                     CoordDessin Coord = new CoordDessin(CstApplication.TAILLEDESSINX, CstApplication.TAILLEDESSINY);
                     Coord.Reponse = sSplit[0];
                     for (int i = 0; i < Coord.BitArrayDessin.Length; i++)
-                        Coord.BitArrayDessin[i] = int.Parse(Coordonnees[i]) == 1 ? true: false;
+                        Coord.BitArrayDessin[i] = int.Parse(Coordonnees[i]) == 1 ? true : false;
 
                     _lstCoord.Add(Coord);
                 }
@@ -52,31 +52,24 @@ namespace TP3_OCR_WPF.DAL
         /// Permet de sauvegarder dans fichier texte, une matrice pour l'apprentissage automatique
         /// </summary>
         /// <param name="fichier">Fichier où extraire les données</param>
-        public int SauvegarderCoordonnees(string fichier, List<CoordDessin> lstCoord)
+        public int SauvegarderCoordonnees(string fichier, CoordDessin coordo)
         {
-            File.WriteAllText(fichier, String.Empty);
+            StreamWriter strm = new StreamWriter(fichier, true);
 
-            StreamWriter strm = new StreamWriter(fichier);
-            
 
-            foreach (var item in lstCoord)
+            strm.Write(coordo.Reponse + ":");
+
+            foreach (var coord in coordo.BitArrayDessin)
             {
-                strm.Write(item.Reponse + ":");
+                if (coord.ToString() == "False")
+                    strm.Write("-1 ");
+                
+                else
+                    strm.Write("1 ");
 
-                foreach (var coord in item.BitArrayDessin)
-                {
-                    if (coord.ToString() == "False")
-                    {
-                        strm.Write("-1 ");
-                    }
-                    else
-                    {
-                        strm.Write("1 ");
-                    }
-                    //strm.Write(coord.ToString() + " ");
-                }
-                strm.WriteLine();
             }
+            strm.WriteLine();
+
             strm.Flush();
             return CstApplication.OK;
         }

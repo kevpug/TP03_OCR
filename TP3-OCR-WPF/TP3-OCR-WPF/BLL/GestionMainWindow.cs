@@ -14,9 +14,10 @@ namespace TP3_OCR_WPF.BLL
             _gestionClassesPerceptrons.ChargerCoordonnees(sNomFichier);
         }
 
-        public string Entrainement(CoordDessin coordo, string reponse)
+        public void Entrainement(CoordDessin coordo, string reponse)
         {
-            throw new NotImplementedException();
+            coordo.Reponse = reponse;
+            _gestionClassesPerceptrons.SauvegarderCoordonnees(CstApplication.NOM_FICHIER_ENTRAIMENT, coordo);
         }
     }
 }

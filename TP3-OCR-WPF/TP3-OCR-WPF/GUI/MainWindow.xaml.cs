@@ -53,7 +53,7 @@ namespace TP3_OCR_WPF.GUI
         private void btnEntrainement_Click(object sender, RoutedEventArgs e)
         {
             _gestionMainWindows.Entrainement(ucDessin.Coordonnees, txtValeurEntrainee.Text);
-            //_gcpAnalyseEcriture.SauvegarderCoordonnees(); CHANGER ÇAAAAAAAAAAAAAAAAAAAAAAAAA
+
         }
 
         /// <summary>

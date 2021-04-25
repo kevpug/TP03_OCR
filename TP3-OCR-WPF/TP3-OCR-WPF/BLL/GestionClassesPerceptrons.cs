@@ -42,10 +42,10 @@ namespace TP3_OCR_WPF.BLL
         /// </summary>
         /// <param name="fichier">Le nom du fichier</param>
         /// <returns>En cas d'erreur retourne le code d'erreur</returns>
-        public int SauvegarderCoordonnees(string fichier)
+        public int SauvegarderCoordonnees(string fichier, CoordDessin coordo)
         {
             int erreur = CstApplication.ERREUR;
-            _gestionSortie.SauvegarderCoordonnees(fichier,_lstCoordDessin);
+            _gestionSortie.SauvegarderCoordonnees(fichier, coordo);
             return erreur;
         }
 

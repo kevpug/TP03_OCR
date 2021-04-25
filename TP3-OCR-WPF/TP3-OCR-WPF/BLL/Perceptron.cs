@@ -62,16 +62,17 @@ namespace TP3_OCR_WPF.BLL
             do
             {
                 iNbErreur = 0;
-                for (int i = 0; i < NbElements; i++)
+                foreach(var lettre in lstInter)
                 {
                     //Évaluer une observation et de faire une prédiction.
                     dSum = _poidsSyn[0];
                     for (int j = 1; j < _poidsSyn.Length; j++)
                     {
-                        //dSum += _poidsSyn[j] * bd.Elements[i, j - 1];
+                        dSum += _poidsSyn[j] * (lettre.BitArrayDessin[j]? 1:-1);
                     }
                     iResultatEstime = (dSum >= 0) ? 1 : 0;
-                    //iErreurLocal = bd.Resultats[i] - iResultatEstime;
+                    ValeurEstime(_poidsSyn,lettre.BitArrayDessin)
+                    iErreurLocal = bd.Resultats[i] - iResultatEstime;
 
                     //Vérifier s'il y a eu une erreur avec l'observation
                     if (iErreurLocal != 0)
@@ -81,7 +82,7 @@ namespace TP3_OCR_WPF.BLL
                         _poidsSyn[0] += _cstApprentissage * iErreurLocal;
                         for (int j = 1; j < _poidsSyn.Length; j++)
                         {
-                            //_poidsSyn[j] += _cstApprentissage * iErreurLocal * bd.Elements[i, j - 1];
+                            _poidsSyn[j] += _cstApprentissage * iErreurLocal * (lettre.BitArrayDessin[j] ? 1:-1);
                         }
                         iNbErreur++;
                     }
