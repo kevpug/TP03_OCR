@@ -13,6 +13,7 @@ namespace TP3_OCR_WPF.BLL
         public BitArray BitArrayDessin
         {
             get { return _baDessin; }
+            set { _baDessin = value; }
         }
         public string Reponse
         {

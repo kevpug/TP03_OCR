@@ -20,7 +20,7 @@ namespace TP3_OCR_WPF.BLL
         /// <param name="reponse">La réponse associé(caractère) aux coordonnées</param>
         /// <returns>Le résultat de la console</returns>
         string Entrainement(CoordDessin coordo, string reponse);
-        string ChargementInitialData();
+        void ChargementInitialDonnees(string sNomFichier);
 
     }
 }

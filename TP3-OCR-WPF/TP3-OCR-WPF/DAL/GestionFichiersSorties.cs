@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TP3_OCR_WPF.BLL;
@@ -9,7 +10,7 @@ namespace TP3_OCR_WPF.DAL
     /// Cette classe gère l'accès aux disques pour le fichiers d'apprentissages. 
     /// Permet de charger ou décharger dans la matrice d'apprentissage.
     /// </summary>
-    public class GestionFichiersSorties
+    public class GestionFichiersSorties : IGestionFichiers
     {
         private List<CoordDessin> _lstCoord;
         /// <summary>
@@ -18,35 +19,31 @@ namespace TP3_OCR_WPF.DAL
         /// <param name="fichier">Fichier où extraire les données</param>
         public List<CoordDessin> ChargerCoordonnees(string fichier)
         {
-            _lstCoord = new List<CoordDessin>();
 
-            StreamReader lecteur = new StreamReader(fichier);
-            string sLigne = "";
-            //string[] sTabElements = null;
-            //BD = new BDApprentissageAuto();
-            //if (!lecteur.EndOfStream)
-            //{
-            //    sLigne = lecteur.ReadLine();
-            //    BD.NBElements = Convert.ToInt32(sLigne);
-            //    sLigne = lecteur.ReadLine();
-            //    BD.NBAttributs = Convert.ToInt32(sLigne);
-            //    BD.Elements = new double[BD.NBElements, BD.NBAttributs - 1];
-            //    BD.Resultats = new int[BD.NBElements];
-            //    for (int i = 0; i < BD.NBElements; i++)
-            //    {
-            //        sLigne = lecteur.ReadLine();
-            //        sTabElements = sLigne.Split('\t');
-            //        for (int j = 0; j < sTabElements.Length - 1; j++)
-            //            BD.Elements[i, j] = Convert.ToDouble(sTabElements[j]);
-            //        BD.Resultats[i] = Convert.ToInt32(sTabElements[sTabElements.Length - 1]);
-            //    }
-            //}
-            if (!lecteur.EndOfStream)
+            if (!File.Exists(fichier))
             {
-                
+                return null;
             }
+            else
+            {
+                _lstCoord = new List<CoordDessin>();
+                StreamReader sr = new StreamReader(fichier);
+                string sLigne = "";
 
+                while (!sr.EndOfStream)
+                {
+                    sLigne = sr.ReadLine();
+                    var sSplit = sLigne.Split(':');
+                    var Coordonnees = sSplit[1].Split(' ');
+                    CoordDessin Coord = new CoordDessin(CstApplication.TAILLEDESSINX, CstApplication.TAILLEDESSINY);
+                    Coord.Reponse = sSplit[0];
+                    for (int i = 0; i < Coord.BitArrayDessin.Length; i++)
+                        Coord.BitArrayDessin[i] = int.Parse(Coordonnees[i]) == 1 ? true: false;
 
+                    _lstCoord.Add(Coord);
+                }
+
+            }
 
             return _lstCoord;
         }
@@ -97,7 +94,7 @@ namespace TP3_OCR_WPF.DAL
         /// Permet de mélanger aléatoirement les échantillons d'apprentissages(coordonnées) dans le but d'améliorer l'apprentissage.
         /// </summary>
         /// <param name="lstCoord">Les coordonnées à mélanger</param>
-        private void MelangerEchantillon(List<CoordDessin> lstCoord)
+        public void MelangerEchantillon(List<CoordDessin> lstCoord)
         {
             Random r1 = new Random();
             Random r2 = new Random();

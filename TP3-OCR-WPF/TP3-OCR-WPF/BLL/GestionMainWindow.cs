@@ -8,9 +8,10 @@ namespace TP3_OCR_WPF.BLL
 {
     public class GestionMainWindow : IGestionMainWindow
     {
-        public string ChargementInitialData()
+        GestionClassesPerceptrons _gestionClassesPerceptrons = new GestionClassesPerceptrons();
+        public void ChargementInitialDonnees(string sNomFichier)
         {
-            throw new NotImplementedException();
+            _gestionClassesPerceptrons.ChargerCoordonnees(sNomFichier);
         }
 
         public string Entrainement(CoordDessin coordo, string reponse)
