@@ -36,13 +36,23 @@ namespace TP3_OCR_WPF.BLL
         /// <returns>Les paramètres de la console</returns>
         public string Entrainement(List<CoordDessin> lstCoord)
         {
-            List<CoordDessin> lstInter = (List<CoordDessin>)lstCoord.Where(r => r.Reponse == _reponse);
+            string sResultat = "";
+            //List<CoordDessin> lstInter = (List<CoordDessin>)lstCoord.Where(r => r.Reponse == _reponse);
+            List<CoordDessin> lstInter = new List<CoordDessin>();
+            try
+            {
+                lstInter.AddRange(lstCoord.Where(r => r.Reponse == _reponse));
+            }
+            catch 
+            {
+                return sResultat = "ERREUR";
+            }
+
             int iNbErreur = 0;
             int iNbIteration = 0;
             int iResultatEstime = 0;
             int iErreurLocal = 0;
             int NbAttributs = lstCoord[0].BitArrayDessin.Length;
-            string sResultat = "";
 
             Random rdn = new Random();
             int NbElements = lstInter.Count(); // Calcule le nombre d'element dans le fichier ayant la meme lettre que le perceptron
