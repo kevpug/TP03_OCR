@@ -24,7 +24,6 @@ namespace TP3_OCR_WPF.BLL
             _lstPerceptrons = new Dictionary<string, Perceptron>();
             _gestionSortie = new GestionFichiersSorties();
             _lstCoordDessin = new List<CoordDessin>();
-            //À COMPLÉTER
 
         }
 

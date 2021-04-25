@@ -44,7 +44,7 @@ namespace TP3_OCR_WPF.DAL
                 }
 
             }
-
+            MelangerEchantillon(_lstCoord);
             return _lstCoord;
         }
 
@@ -90,7 +90,6 @@ namespace TP3_OCR_WPF.DAL
         public void MelangerEchantillon(List<CoordDessin> lstCoord)
         {
             Random r1 = new Random();
-            Random r2 = new Random();
             int index1;
             int index2;
             CoordDessin coordTemp;
@@ -98,14 +97,14 @@ namespace TP3_OCR_WPF.DAL
             for (int i = 0; i < CstApplication.MAXITERATION; i++)
             {
                 index1 = r1.Next(lstCoord.Count);
-                index2 = r2.Next(lstCoord.Count);
+                index2 = r1.Next(lstCoord.Count);
+                while (index2 == index1)
+                    index2 = r1.Next(lstCoord.Count);
 
                 coordTemp = lstCoord[index1];
                 lstCoord[index1] = lstCoord[index2];
                 lstCoord[index2] = coordTemp;
             }
         }
-
     }
-
 }

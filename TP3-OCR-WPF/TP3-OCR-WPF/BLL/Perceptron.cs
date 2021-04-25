@@ -57,13 +57,6 @@ namespace TP3_OCR_WPF.BLL
                 iNbErreur = 0;
                 foreach(var lettre in lstCoord)
                 {
-                    //Évaluer une observation et de faire une prédiction.
-                    //dSum = _poidsSyn[0];
-                    //for (int j = 1; j < _poidsSyn.Length; j++)
-                    //{
-                    //    dSum += _poidsSyn[j] * (lettre.BitArrayDessin[j]? 1:-1);
-                    //}
-                    //iResultatEstime = (dSum >= 0) ? 1 : 0;
                     iResultatEstime = ValeurEstime(_poidsSyn, lettre.BitArrayDessin);
                     iErreurLocal = (lettre.Reponse == _reponse ? CstApplication.VRAI : CstApplication.FAUX) - iResultatEstime;
 
