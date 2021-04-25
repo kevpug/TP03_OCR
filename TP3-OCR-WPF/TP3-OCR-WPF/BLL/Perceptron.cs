@@ -37,9 +37,6 @@ namespace TP3_OCR_WPF.BLL
         public string Entrainement(List<CoordDessin> lstCoord)
         {
             List<CoordDessin> lstInter = (List<CoordDessin>)lstCoord.Where(r => r.Reponse == _reponse);
-            string resultat = "";
-
-            double dSum = 0;
             int iNbErreur = 0;
             int iNbIteration = 0;
             int iResultatEstime = 0;
@@ -51,9 +48,6 @@ namespace TP3_OCR_WPF.BLL
             int NbElements = lstInter.Count(); // Calcule le nombre d'element dans le fichier ayant la meme lettre que le perceptron
 
             _poidsSyn = new double[NbAttributs];
-            int[] Resultats = new int[NbElements];
-            double[,] Elements = new double[NbElements, NbAttributs];
-
 
             //Initialise les poids synaptiques à des valeurs aléatoire
             for (int i = 0; i < _poidsSyn.Length; i++)
@@ -65,14 +59,14 @@ namespace TP3_OCR_WPF.BLL
                 foreach(var lettre in lstInter)
                 {
                     //Évaluer une observation et de faire une prédiction.
-                    dSum = _poidsSyn[0];
-                    for (int j = 1; j < _poidsSyn.Length; j++)
-                    {
-                        dSum += _poidsSyn[j] * (lettre.BitArrayDessin[j]? 1:-1);
-                    }
-                    iResultatEstime = (dSum >= 0) ? 1 : 0;
-                    //ValeurEstime(_poidsSyn, lettre.BitArrayDessin);
-                    //iErreurLocal = bd.Resultats[i] - iResultatEstime;
+                    //dSum = _poidsSyn[0];
+                    //for (int j = 1; j < _poidsSyn.Length; j++)
+                    //{
+                    //    dSum += _poidsSyn[j] * (lettre.BitArrayDessin[j]? 1:-1);
+                    //}
+                    //iResultatEstime = (dSum >= 0) ? 1 : 0;
+                    iResultatEstime = ValeurEstime(_poidsSyn, lettre.BitArrayDessin);
+                    iErreurLocal = (lettre.Reponse == _reponse ? CstApplication.VRAI : CstApplication.FAUX) - iResultatEstime;
 
                     //Vérifier s'il y a eu une erreur avec l'observation
                     if (iErreurLocal != 0)
@@ -96,7 +90,6 @@ namespace TP3_OCR_WPF.BLL
             while (iNbErreur > 0 && iNbIteration < 10000);
 
             return sResultat;
-            return resultat;
         }
 
         /// <summary>
@@ -107,8 +100,13 @@ namespace TP3_OCR_WPF.BLL
         /// <returns>Vrai ou faux</returns>
         public int ValeurEstime(double[] vecteurSyn, BitArray entree)
         {
-            //À COMPLÉTER
-            return CstApplication.VRAI;
+            //Évaluer une observation et de faire une prédiction.
+            double dSum = vecteurSyn[0];
+            for (int j = 1; j < vecteurSyn.Length; j++)
+            {
+                dSum += _poidsSyn[j] * (entree[j] ? 1 : -1);
+            }
+            return (dSum >= 0) ? CstApplication.VRAI : CstApplication.FAUX;
         }
 
         /// <summary>
