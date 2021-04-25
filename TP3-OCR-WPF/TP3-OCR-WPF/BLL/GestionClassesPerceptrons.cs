@@ -35,6 +35,13 @@ namespace TP3_OCR_WPF.BLL
         public void ChargerCoordonnees(string fichier)
         {
             _lstCoordDessin = _gestionSortie.ChargerCoordonnees(fichier);
+            foreach (var item in _lstCoordDessin)
+            {
+                if (!_lstPerceptrons.ContainsKey(item.Reponse))
+                {
+                    _lstPerceptrons.Add(item.Reponse, new Perceptron(item.Reponse));
+                }
+            }
         }
 
         /// <summary>
@@ -60,6 +67,7 @@ namespace TP3_OCR_WPF.BLL
             string sConsole = "";
             coordo.Reponse = reponse;
             _lstCoordDessin.Add(coordo);
+            
 
             return sConsole;
         }

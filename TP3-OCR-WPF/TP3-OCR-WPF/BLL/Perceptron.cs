@@ -71,8 +71,8 @@ namespace TP3_OCR_WPF.BLL
                         dSum += _poidsSyn[j] * (lettre.BitArrayDessin[j]? 1:-1);
                     }
                     iResultatEstime = (dSum >= 0) ? 1 : 0;
-                    ValeurEstime(_poidsSyn,lettre.BitArrayDessin)
-                    iErreurLocal = bd.Resultats[i] - iResultatEstime;
+                    //ValeurEstime(_poidsSyn, lettre.BitArrayDessin);
+                    //iErreurLocal = bd.Resultats[i] - iResultatEstime;
 
                     //Vérifier s'il y a eu une erreur avec l'observation
                     if (iErreurLocal != 0)

@@ -17,6 +17,7 @@ namespace TP3_OCR_WPF.BLL
         public void Entrainement(CoordDessin coordo, string reponse)
         {
             coordo.Reponse = reponse;
+            _gestionClassesPerceptrons.Entrainement(coordo, reponse);
             _gestionClassesPerceptrons.SauvegarderCoordonnees(CstApplication.NOM_FICHIER_ENTRAIMENT, coordo);
         }
     }
