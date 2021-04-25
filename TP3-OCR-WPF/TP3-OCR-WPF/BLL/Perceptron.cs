@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TP3_OCR_WPF.BLL
 {
@@ -24,7 +25,8 @@ namespace TP3_OCR_WPF.BLL
         /// <param name="reponse">La classe que défini le perceptron</param>
         public Perceptron(string reponse)
         {
-            //À COMPLÉTER
+            _cstApprentissage = CstApplication.CONSTANTEAPPRENTISSAGE;
+            _reponse = reponse;
         }
 
         /// <summary>
@@ -34,8 +36,65 @@ namespace TP3_OCR_WPF.BLL
         /// <returns>Les paramètres de la console</returns>
         public string Entrainement(List<CoordDessin> lstCoord)
         {
+            List<CoordDessin> lstInter = (List<CoordDessin>)lstCoord.Where(r => r.Reponse == _reponse);
             string resultat = "";
-            //À COMPLÉTER
+
+            double dSum = 0;
+            int iNbErreur = 0;
+            int iNbIteration = 0;
+            int iResultatEstime = 0;
+            int iErreurLocal = 0;
+            int NbAttributs = lstCoord[0].BitArrayDessin.Length;
+            string sResultat = "";
+
+            Random rdn = new Random();
+            int NbElements = lstInter.Count(); // Calcule le nombre d'element dans le fichier ayant la meme lettre que le perceptron
+
+            _poidsSyn = new double[NbAttributs];
+            int[] Resultats = new int[NbElements];
+            double[,] Elements = new double[NbElements, NbAttributs];
+
+
+            //Initialise les poids synaptiques à des valeurs aléatoire
+            for (int i = 0; i < _poidsSyn.Length; i++)
+                _poidsSyn[i] = rdn.NextDouble();
+
+            do
+            {
+                iNbErreur = 0;
+                for (int i = 0; i < NbElements; i++)
+                {
+                    //Évaluer une observation et de faire une prédiction.
+                    dSum = _poidsSyn[0];
+                    for (int j = 1; j < _poidsSyn.Length; j++)
+                    {
+                        //dSum += _poidsSyn[j] * bd.Elements[i, j - 1];
+                    }
+                    iResultatEstime = (dSum >= 0) ? 1 : 0;
+                    //iErreurLocal = bd.Resultats[i] - iResultatEstime;
+
+                    //Vérifier s'il y a eu une erreur avec l'observation
+                    if (iErreurLocal != 0)
+                    {
+                        //Si on s'est trompé, alors mettre à jour les poids 
+                        //synaptiques avec la méthode de descente en gradient.
+                        _poidsSyn[0] += _cstApprentissage * iErreurLocal;
+                        for (int j = 1; j < _poidsSyn.Length; j++)
+                        {
+                            //_poidsSyn[j] += _cstApprentissage * iErreurLocal * bd.Elements[i, j - 1];
+                        }
+                        iNbErreur++;
+                    }
+                }
+                sResultat += string.Format("\r\nIteration {0} \t Erreur {1}", iNbIteration, iNbErreur);
+                sResultat += string.Format("\r\nLe taux de succès est {0} %",
+                                            ((double)(NbElements - iNbErreur) / (double)(NbElements)) * 100.00);
+
+                iNbIteration++;
+            }
+            while (iNbErreur > 0 && iNbIteration < 10000);
+
+            return sResultat;
             return resultat;
         }
 
