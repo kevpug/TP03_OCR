@@ -22,5 +22,7 @@ namespace TP3_OCR_WPF.BLL
         string Entrainement(CoordDessin coordo, string reponse);
         void ChargementInitialDonnees(string sNomFichier);
 
+        string Tester(CoordDessin coordo);
+
     }
 }

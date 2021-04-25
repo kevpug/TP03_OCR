@@ -126,9 +126,8 @@ namespace TP3_OCR_WPF.BLL
         /// <returns></returns>
         public bool TesterNeurone(CoordDessin coord)
         {
-            //À COMPLÉTER
-            return CstApplication.VRAI == CstApplication.VRAI ? true : false;
+            //Évaluer une observation et de faire une prédiction.
+            return ValeurEstime(_poidsSyn,coord.BitArrayDessin) == CstApplication.VRAI ? true : false;
         }
-
     }
 }

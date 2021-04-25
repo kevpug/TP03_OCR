@@ -41,6 +41,7 @@ namespace TP3_OCR_WPF.BLL
                 {
                     _lstPerceptrons.Add(item.Reponse, new Perceptron(item.Reponse));
                 }
+                _lstPerceptrons[item.Reponse].Entrainement(_lstCoordDessin);
             }
         }
 
@@ -90,6 +91,11 @@ namespace TP3_OCR_WPF.BLL
         public string TesterPerceptron(CoordDessin coord)
         {
             string resultat = "";
+            foreach (var percep in _lstPerceptrons)
+            {
+                if (percep.Value.TesterNeurone(coord))
+                    resultat += percep.Key + " ";
+            }
 
             if (resultat == "")
                 resultat = "?";

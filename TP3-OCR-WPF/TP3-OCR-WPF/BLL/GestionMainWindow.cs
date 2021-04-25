@@ -21,5 +21,10 @@ namespace TP3_OCR_WPF.BLL
 
             return _gestionClassesPerceptrons.Entrainement(coordo, reponse);
         }
+
+        public string Tester(CoordDessin coordo)
+        {
+            return _gestionClassesPerceptrons.TesterPerceptron(coordo);
+        }
     }
 }
