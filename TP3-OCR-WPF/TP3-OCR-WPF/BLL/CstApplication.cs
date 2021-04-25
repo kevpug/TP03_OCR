@@ -34,6 +34,9 @@ namespace TP3_OCR_WPF.BLL
         // Le nombre de bits dans le dessin en Y.
         public const int NOMBRE_BITS_Y = TAILLEDESSINY / HAUTEURTRAIT;
 
+        //Le nom du fichier qui contient les données pour l'entrainement.
+        public const string NOM_FICHIER_ENTRAIMENT = "DAL\\Donnees.txt";
+
 
     }
 }

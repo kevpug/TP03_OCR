@@ -14,7 +14,7 @@ namespace TP3_OCR_WPF.BLL
     {
         private Dictionary<string, Perceptron> _lstPerceptrons;
         private List<CoordDessin> _lstCoordDessin;
-        private GestionFichiersSorties _gestionSortie;
+        private IGestionFichiers _gestionSortie;
 
         /// <summary>
         /// Constructeur
