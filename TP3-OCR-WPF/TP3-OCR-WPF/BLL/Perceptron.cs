@@ -37,17 +37,6 @@ namespace TP3_OCR_WPF.BLL
         public string Entrainement(List<CoordDessin> lstCoord)
         {
             string sResultat = "";
-            //List<CoordDessin> lstInter = (List<CoordDessin>)lstCoord.Where(r => r.Reponse == _reponse);
-            List<CoordDessin> lstInter = new List<CoordDessin>();
-            try
-            {
-                lstInter.AddRange(lstCoord.Where(r => r.Reponse == _reponse));
-            }
-            catch 
-            {
-                return sResultat = "ERREUR";
-            }
-
             int iNbErreur = 0;
             int iNbIteration = 0;
             int iResultatEstime = 0;
@@ -55,7 +44,7 @@ namespace TP3_OCR_WPF.BLL
             int NbAttributs = lstCoord[0].BitArrayDessin.Length;
 
             Random rdn = new Random();
-            int NbElements = lstInter.Count(); // Calcule le nombre d'element dans le fichier ayant la meme lettre que le perceptron
+            int NbElements = lstCoord.Count(); 
 
             _poidsSyn = new double[NbAttributs];
 
@@ -66,7 +55,7 @@ namespace TP3_OCR_WPF.BLL
             do
             {
                 iNbErreur = 0;
-                foreach(var lettre in lstInter)
+                foreach(var lettre in lstCoord)
                 {
                     //Évaluer une observation et de faire une prédiction.
                     //dSum = _poidsSyn[0];

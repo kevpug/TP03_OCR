@@ -77,6 +77,11 @@ namespace TP3_OCR_WPF.GUI
                 }
                 txtConsole.Text = sResultat;
             }
+            else
+            {
+                txtValeurTestee.Text = sResultat;
+            }
+
         }
     }
 }
