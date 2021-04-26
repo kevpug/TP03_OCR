@@ -56,6 +56,9 @@ namespace TP3_OCR_WPF.GUI
                 txtConsole.Text = _gestionMainWindows.Entrainement(ucDessin.Coordonnees, txtValeurEntrainee.Text);
             else
                 txtConsole.Text = "Assurez-vous d'avoir entré UNE lettre pour la valeur entrainée";
+
+            txtValeurEntrainee.Text = "";
+            ucDessin.EffacerDessin();
         }
 
         /// <summary>
@@ -66,22 +69,8 @@ namespace TP3_OCR_WPF.GUI
         private void btnTest_Click(object sender, RoutedEventArgs e)
         {
             string sResultat = _gestionMainWindows.Tester(ucDessin.Coordonnees);
-            if (sResultat.Trim().Length > 1)
-            {
-                txtValeurTestee.Text = "Plusieurs réponses possibles...";
-                var sValeurs = sResultat.Split(' ');
-                sResultat = "Valeurs possibles:\r\n";
-                foreach (var value in sValeurs)
-                {
-                    sResultat += value + "\r\n";
-                }
-                txtConsole.Text = sResultat;
-            }
-            else
-            {
+                txtConsole.Text = ""; //Efface ce qui a dans la console au cas
                 txtValeurTestee.Text = sResultat;
-            }
-
         }
     }
 }

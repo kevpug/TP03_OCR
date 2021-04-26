@@ -41,6 +41,7 @@ namespace TP3_OCR_WPF.BLL
             int iNbIteration = 0;
             int iResultatEstime = 0;
             int iErreurLocal = 0;
+            double dPourcentageReussite = 0.00;
             int NbAttributs = lstCoord[0].BitArrayDessin.Length;
 
             Random rdn = new Random();
@@ -75,11 +76,12 @@ namespace TP3_OCR_WPF.BLL
                 }
                 sResultat += string.Format("\r\nIteration {0} \t Erreur {1}", iNbIteration, iNbErreur);
                 sResultat += string.Format("\r\nLe taux de succès est {0} %",
-                                            ((double)(NbElements - iNbErreur) / (double)(NbElements)) * 100.00);
+                                            ((double)(NbElements - iNbErreur) / (double)(NbElements)) * 100.00f);
 
                 iNbIteration++;
+                dPourcentageReussite = ((double)(NbElements - iNbErreur) / (double)(NbElements)) * 100.00f;
             }
-            while (iNbErreur > 0 && iNbIteration < 10000);
+            while (dPourcentageReussite < CstApplication.POURCENTCONVERGENCE && iNbIteration < CstApplication.MAXITERATION);
 
             return sResultat;
         }

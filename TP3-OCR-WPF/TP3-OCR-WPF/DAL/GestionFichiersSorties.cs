@@ -94,7 +94,7 @@ namespace TP3_OCR_WPF.DAL
             int index2;
             CoordDessin coordTemp;
 
-            for (int i = 0; i < CstApplication.MAXITERATION; i++)
+            for (int i = 0; i < CstApplication.MAXPERMUTATION; i++)
             {
                 index1 = r1.Next(lstCoord.Count);
                 index2 = r1.Next(lstCoord.Count);
