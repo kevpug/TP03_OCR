@@ -45,7 +45,7 @@ namespace TP3_OCR_WPF.BLL
             int NbAttributs = lstCoord[0].BitArrayDessin.Length;
 
             Random rdn = new Random();
-            int NbElements = lstCoord.Count(); 
+            int NbElements = lstCoord.Count();
 
             _poidsSyn = new double[NbAttributs];
 
@@ -56,7 +56,7 @@ namespace TP3_OCR_WPF.BLL
             do
             {
                 iNbErreur = 0;
-                foreach(var lettre in lstCoord)
+                foreach (var lettre in lstCoord)
                 {
                     iResultatEstime = ValeurEstime(_poidsSyn, lettre.BitArrayDessin);
                     iErreurLocal = (lettre.Reponse == _reponse ? CstApplication.VRAI : CstApplication.FAUX) - iResultatEstime;
@@ -69,7 +69,7 @@ namespace TP3_OCR_WPF.BLL
                         _poidsSyn[0] += _cstApprentissage * iErreurLocal;
                         for (int j = 1; j < _poidsSyn.Length; j++)
                         {
-                            _poidsSyn[j] += _cstApprentissage * iErreurLocal * (lettre.BitArrayDessin[j] ? 1:-1);
+                            _poidsSyn[j] += _cstApprentissage * iErreurLocal * (lettre.BitArrayDessin[j] ? 1 : -1);
                         }
                         iNbErreur++;
                     }
@@ -111,7 +111,7 @@ namespace TP3_OCR_WPF.BLL
         public bool TesterNeurone(CoordDessin coord)
         {
             //Évaluer une observation et de faire une prédiction.
-            return ValeurEstime(_poidsSyn,coord.BitArrayDessin) == CstApplication.VRAI ? true : false;
+            return ValeurEstime(_poidsSyn, coord.BitArrayDessin) == CstApplication.VRAI ? true : false;
         }
     }
 }

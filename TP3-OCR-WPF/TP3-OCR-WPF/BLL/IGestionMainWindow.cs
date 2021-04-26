@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TP3_OCR_WPF.BLL
+﻿namespace TP3_OCR_WPF.BLL
 {
     /// <summary>
     /// Auteur:         Kévin Pugliese, Arnaud Labrecque
@@ -14,14 +8,23 @@ namespace TP3_OCR_WPF.BLL
     public interface IGestionMainWindow
     {
         /// <summary>
-        /// Entraine les perceptrons avec un nouveau caractère
+        /// S'occupe de retourner à l'interface visuelle l'entraînement de GestionClassePerceptron
         /// </summary>
-        /// <param name="coordo">Les nouvelles coordonnées</param>
-        /// <param name="reponse">La réponse associé(caractère) aux coordonnées</param>
-        /// <returns>Le résultat de la console</returns>
+        /// <param name="coordo"></param>
+        /// <param name="reponse"></param>
+        /// <returns></returns>
         string Entrainement(CoordDessin coordo, string reponse);
-        void ChargementInitialDonnees(string sNomFichier);
 
+        /// <summary>
+        /// Charge le fichier afin de fournir à l'application les données initiales
+        /// </summary>
+        /// <param name="sNomFichier"></param>
+        void ChargementInitialDonnees(string sNomFichier);
+        /// <summary>
+        /// S'occupe de retourner à l'interface visuelle de retourner le résultat des tests des perceptrons 
+        /// </summary>
+        /// <param name="coordo"></param>
+        /// <returns></returns>
         string Tester(CoordDessin coordo);
 
     }

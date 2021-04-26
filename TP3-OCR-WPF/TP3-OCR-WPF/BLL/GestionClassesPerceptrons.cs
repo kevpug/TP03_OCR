@@ -97,13 +97,5 @@ namespace TP3_OCR_WPF.BLL
             return resultat;
         }
 
-        /// <summary>
-        /// Obtient une liste des coordonées.
-        /// </summary>
-        /// <returns>Une liste des coordonées.</returns>
-        public IList<CoordDessin> ObtenirCoordonnees()
-        {
-            return _gestionSortie.ObtenirCoordonnees();
-        }
     }
 }

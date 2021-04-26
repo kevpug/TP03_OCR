@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TP3_OCR_WPF.BLL;
@@ -63,7 +62,7 @@ namespace TP3_OCR_WPF.DAL
             {
                 if (coord.ToString() == "False")
                     strm.Write("-1 ");
-                
+
                 else
                     strm.Write("1 ");
 
@@ -73,15 +72,6 @@ namespace TP3_OCR_WPF.DAL
             strm.Flush();
             return CstApplication.OK;
         }
-
-        /// <summary>
-        /// Permet d'extraire un fichier texte dans une matrice pour l'apprentissage automatique.
-        /// </summary>
-        public IList<CoordDessin> ObtenirCoordonnees()
-        {
-            return _lstCoord;
-        }
-
 
         /// <summary>
         /// Permet de mélanger aléatoirement les échantillons d'apprentissages(coordonnées) dans le but d'améliorer l'apprentissage.

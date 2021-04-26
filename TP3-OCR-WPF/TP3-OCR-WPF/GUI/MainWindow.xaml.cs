@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using TP3_OCR_WPF.BLL;
 
 namespace TP3_OCR_WPF.GUI
@@ -29,7 +16,7 @@ namespace TP3_OCR_WPF.GUI
             InitializeComponent();
             _gestionMainWindows = new GestionMainWindow();
             _gestionMainWindows.ChargementInitialDonnees(CstApplication.NOM_FICHIER_ENTRAIMENT);
-            
+
             ucDessin.Width = CstApplication.TAILLEDESSINX + 6;
             ucDessin.Height = CstApplication.TAILLEDESSINY + 6;
 
@@ -69,8 +56,8 @@ namespace TP3_OCR_WPF.GUI
         private void btnTest_Click(object sender, RoutedEventArgs e)
         {
             string sResultat = _gestionMainWindows.Tester(ucDessin.Coordonnees);
-                txtConsole.Text = ""; //Efface ce qui a dans la console au cas
-                txtValeurTestee.Text = sResultat;
+            txtConsole.Text = ""; //Efface ce qui a dans la console au cas
+            txtValeurTestee.Text = sResultat;
         }
     }
 }
