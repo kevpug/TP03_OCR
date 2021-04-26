@@ -72,7 +72,11 @@ namespace TP3_OCR_WPF.BLL
             {
                 _lstPerceptrons.Add(reponse, new Perceptron(reponse));
             }
-            sConsole = _lstPerceptrons[reponse].Entrainement(_lstCoordDessin);
+            foreach (var item in _lstPerceptrons)
+            {
+                sConsole += item.Value.Entrainement(_lstCoordDessin) + "\n";
+            }
+            //sConsole = _lstPerceptrons[reponse].Entrainement(_lstCoordDessin);
             return sConsole;
         }
 

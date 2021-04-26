@@ -72,14 +72,16 @@ namespace TP3_OCR_WPF.BLL
                             _poidsSyn[j] += _cstApprentissage * iErreurLocal * (lettre.BitArrayDessin[j] ? 1 : -1);
                         }
                         iNbErreur++;
+
                     }
                 }
-                sResultat += string.Format("\r\nIteration {0} \t Erreur {1}", iNbIteration, iNbErreur);
-                sResultat += string.Format("\r\nLe taux de succès est {0} %",
-                                            ((double)(NbElements - iNbErreur) / (double)(NbElements)) * 100.00f);
+                dPourcentageReussite = ((double)(NbElements - iNbErreur) / (double)(NbElements)) * 100d;
+
+
+                sResultat = string.Format("\r\nPour le Perceptron '{0}' : le pourcentage de réussite est de {1} %", _reponse, dPourcentageReussite.ToString("0.00"));
+
 
                 iNbIteration++;
-                dPourcentageReussite = ((double)(NbElements - iNbErreur) / (double)(NbElements)) * 100.00f;
             }
             while (dPourcentageReussite < CstApplication.POURCENTCONVERGENCE && iNbIteration < CstApplication.MAXITERATION);
 

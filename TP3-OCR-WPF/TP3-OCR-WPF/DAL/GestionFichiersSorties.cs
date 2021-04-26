@@ -18,31 +18,30 @@ namespace TP3_OCR_WPF.DAL
         /// <param name="fichier">Fichier où extraire les données</param>
         public List<CoordDessin> ChargerCoordonnees(string fichier)
         {
+            _lstCoord = new List<CoordDessin>();
 
             if (!File.Exists(fichier))
             {
-                return null;
+                return _lstCoord;
             }
-            else
+
+            StreamReader sr = new StreamReader(fichier);
+            string sLigne = "";
+
+            while (!sr.EndOfStream)
             {
-                _lstCoord = new List<CoordDessin>();
-                StreamReader sr = new StreamReader(fichier);
-                string sLigne = "";
+                sLigne = sr.ReadLine();
+                var sSplit = sLigne.Split(':');
+                var Coordonnees = sSplit[1].Split(' ');
+                CoordDessin Coord = new CoordDessin(CstApplication.TAILLEDESSINX, CstApplication.TAILLEDESSINY);
+                Coord.Reponse = sSplit[0];
+                for (int i = 0; i < Coord.BitArrayDessin.Length; i++)
+                    Coord.BitArrayDessin[i] = int.Parse(Coordonnees[i]) == 1 ? true : false;
 
-                while (!sr.EndOfStream)
-                {
-                    sLigne = sr.ReadLine();
-                    var sSplit = sLigne.Split(':');
-                    var Coordonnees = sSplit[1].Split(' ');
-                    CoordDessin Coord = new CoordDessin(CstApplication.TAILLEDESSINX, CstApplication.TAILLEDESSINY);
-                    Coord.Reponse = sSplit[0];
-                    for (int i = 0; i < Coord.BitArrayDessin.Length; i++)
-                        Coord.BitArrayDessin[i] = int.Parse(Coordonnees[i]) == 1 ? true : false;
-
-                    _lstCoord.Add(Coord);
-                }
-
+                _lstCoord.Add(Coord);
             }
+            sr.Close();
+
             MelangerEchantillon(_lstCoord);
             return _lstCoord;
         }
@@ -70,6 +69,7 @@ namespace TP3_OCR_WPF.DAL
             strm.WriteLine();
 
             strm.Flush();
+            strm.Close();
             return CstApplication.OK;
         }
 
@@ -79,22 +79,31 @@ namespace TP3_OCR_WPF.DAL
         /// <param name="lstCoord">Les coordonnées à mélanger</param>
         public void MelangerEchantillon(List<CoordDessin> lstCoord)
         {
-            Random r1 = new Random();
-            int index1;
-            int index2;
-            CoordDessin coordTemp;
-
-            for (int i = 0; i < CstApplication.MAXPERMUTATION; i++)
+            if (!(lstCoord.Count <= 1))
             {
-                index1 = r1.Next(lstCoord.Count);
-                index2 = r1.Next(lstCoord.Count);
-                while (index2 == index1)
-                    index2 = r1.Next(lstCoord.Count);
+                Random r1 = new Random();
+                int index1;
+                int index2;
+                CoordDessin coordTemp;
 
-                coordTemp = lstCoord[index1];
-                lstCoord[index1] = lstCoord[index2];
-                lstCoord[index2] = coordTemp;
+
+                for (int i = 0; i < CstApplication.MAXPERMUTATION; i++)
+                {
+                    index1 = r1.Next(lstCoord.Count);
+                    index2 = r1.Next(lstCoord.Count);
+                    while (index2 == index1)
+                        index2 = r1.Next(lstCoord.Count);
+
+                    coordTemp = lstCoord[index1];
+                    lstCoord[index1] = lstCoord[index2];
+                    lstCoord[index2] = coordTemp;
+                }
             }
+            else
+            {
+                return;
+            }
+
         }
     }
 }
